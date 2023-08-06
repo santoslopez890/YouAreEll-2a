@@ -68,6 +68,7 @@ public class SimpleShell {
 
                 // ids
                 if (list.contains("ids")) {
+                    //not sure what webber is
                     String results = webber.get_ids();
                     SimpleShell.prettyPrint(results);
                     continue;
