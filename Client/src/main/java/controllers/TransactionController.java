@@ -26,11 +26,11 @@ public class TransactionController {
     public String getIdsString() { //public List<Id> getIds() {
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(rootURL+"/ids"))
-                    .GET()
-                    .build();
-            HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return ""+response.body();
+                    .uri(new URI(rootURL+"/ids"))//attach url
+                    .GET()//attach verb
+                    .build();//builder
+            HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());//send to clinet 
+            return ""+response.body();//response status, headers,
         } catch (URISyntaxException | IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +38,7 @@ public class TransactionController {
 
     public List<Id> getIds() {
         String idsstring = this.getIdsString();
-        Gson gson = new Gson();
+        // liz says: huh?-> Gson gson = new Gson();
         Type listType = new TypeToken<List<Id>>() {}.getType();
         List<Id> idList = new Gson().fromJson(idsstring, listType);
         return idList;
